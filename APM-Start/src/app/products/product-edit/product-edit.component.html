@@ -1,11 +1,45 @@
 <div class="card">
   <div class="card-header">
-    {{pageTitle}}
+    {{ pageTitle }}
   </div>
 
-  <div class="card-body"
-       *ngIf="product">
-    <form novalidate
+  <div class="card-body" *ngIf="product">
+    <div class="wizard">
+      <a href="" [routerLink]="['info']" routerLinkActive="router-link-active" >Basic information</a>
+      <a href="" [routerLink]="['tags']" routerLinkActive="router-link-active" >Search Tags</a>
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <button
+      class="btn btn-primary mr-3"
+      style="width:80px"
+      type="button"
+      [disabled]="!isValid"
+      title="Save your entered data"
+      (click)="saveProduct()"
+    >
+      Save
+    </button>
+    <button
+      class="btn btn-outline-secondary mr-3"
+      style="width:80px"
+      type="button"
+      title="Cancel your edits"
+      [routerLink]="['/products']"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn btn-outline-warning"
+      style="width:80px"
+      type="button"
+      title="Delete this product"
+      (click)="deleteProduct()"
+    >
+      Delete
+    </button>
+    <!-- <form novalidate
           #productForm="ngForm">
 
       <div class="form-group row">
@@ -92,10 +126,8 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> -->
   </div>
 </div>
 
-<div class="alert alert-danger"
-     *ngIf="errorMessage">{{errorMessage}}
-</div>
+<div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
