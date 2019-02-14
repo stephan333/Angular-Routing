@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 // Imports for loading & configuring the in-memory web api
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),

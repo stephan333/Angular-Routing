@@ -11,20 +11,28 @@ import { ProductEditInfoComponent } from './product-edit/product-edit-info.compo
 import { ProductEditTagsComponent } from './product-edit/product-edit-tags.component';
 
 const routes: Routes = [
-  { path: 'products', component: ProductListComponent },
   {
-    path: 'products/:id',
-    component: ProductDetailComponent,
-    resolve: { resolvedData: ProductsResolver }
-  },
-  {
-    path: 'products/:id/edit',
-    component: ProductEditComponent,
-    resolve: { resolvedData: ProductsResolver },
+    path: 'products',
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'info' },
-      { path: 'info', component: ProductEditInfoComponent },
-      { path: 'tags', component: ProductEditTagsComponent }
+      {
+        path: '',
+        component: ProductListComponent
+      },
+      {
+        path: ':id',
+        component: ProductDetailComponent,
+        resolve: { resolvedData: ProductsResolver }
+      },
+      {
+        path: ':id/edit',
+        component: ProductEditComponent,
+        resolve: { resolvedData: ProductsResolver },
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'info' },
+          { path: 'info', component: ProductEditInfoComponent },
+          { path: 'tags', component: ProductEditTagsComponent }
+        ]
+      }
     ]
   }
 ];
